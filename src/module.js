@@ -276,7 +276,6 @@ function diagramToSVG(diagramString, alignmentHint) {
         grid._used = [];
 
         grid.width = str.indexOf('\n');
-        console.log(grid.width);
         grid.height = str.split('\n').length;
         if (str[str.length - 1] === '\n') {
             --grid.height;
@@ -1361,13 +1360,11 @@ function diagramToSVG(diagramString, alignmentHint) {
     findPaths(grid, pathSet);
     findDecorations(grid, pathSet, decorationSet);
 
-    let hh = ((grid.height + 1) * SCALE * ASPECT) * 2;
-    let ww = ((grid.width + 1) * SCALE) /2 ;
+    let hh = ((grid.height + 1) * SCALE * ASPECT) ;
+    let ww = ((grid.width + 1) * SCALE) ;
 
-    hh = 100;
 
-    var svg = `<svg class="diagram" xmlns="http://www.w3.org/2000/svg" version="1.1" >`;
-    //`height="${hh}" width="${ww}"`;
+    var svg = `<svg class="diagram" xmlns="http://www.w3.org/2000/svg" version="1.1" height="${hh}" width="${ww}" >`;
 
     if (alignmentHint === 'floatleft') {
         svg += ' style="float:left;margin: 15px 30px 15px 0px;"';
