@@ -4,7 +4,7 @@ Usage:
 
 Options:
     -h, --help              help for ascidia2
-    -p, --png               generate png 
+    -p, --pdf               generate pdf
     -t, --html              generate html
     -o, --output FILE
 

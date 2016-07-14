@@ -51,13 +51,13 @@ const getOptions = doc => {
     "use strict";
     const o = $d(doc);
     const help = $o('-h', '--help', false, o);
-    const png = $o('-p', '--png', false, o);
+    const pdf = $o('-p', '--pdf', false, o);
     const html = $o('-t', '--html', false, o);
     const filename = o['INPUT'];
     const output = $o('-o', '--output', undefined, o);
     return {
         help,
-        png,
+        pdf,
         filename,
         output,
         html
@@ -69,7 +69,7 @@ const main = () => {
         const {
             help,
             filename,
-            png,
+            pdf,
             output,
             html
         } = getOptions(it);
@@ -92,16 +92,16 @@ const main = () => {
                         } else {
                             let output1 = `${oprefix}.svg`;
                             let file = $fs.writeFileAsync(output1, res, 'utf8');
-                            if (png) {
+                            if (pdf) {
                                 file.then(() => {
                                     let rp = path.dirname($fs.realpathSync(output1));
-                                    return exec(`inkscape --export-png ${rp}/${oprefix}.png ${rp}/${output1}`);
+                                    return exec(`inkscape --export-pdf ${rp}/${oprefix}.pdf ${rp}/${output1}`);
                                 });
                             }
                         }
                     } else {
-                        if (png) {
-                            throw "Should specify an output filename for png";
+                        if (pdf) {
+                            throw "Should specify an output filename for pdf";
                         } else {
                             console.log(res);
                         }
