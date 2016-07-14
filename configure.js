@@ -22,6 +22,13 @@ generateProject(_ => {
         _.cmd("-hub cm 'update docs and history.md'")
     })
 
+    _.collect("demo", _ => {
+        _.cmd("rm -f x.svg")
+        _.cmd("./lib/index.js ./ref/dia.txt -o ./x.svg")
+        _.cmd("open x.svg -a 'Google Chrome'")
+        //_.cmd("./node_modules/.bin/svg2png x.svg -w 100 -h 100");
+    })
+
     _.collect("devloop", _ => {
         _.cmd("make buildloop &")
         _.cmd("make testloop &")
