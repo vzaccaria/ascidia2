@@ -95,7 +95,12 @@ const main = () => {
                             if (pdf) {
                                 file.then(() => {
                                     let rp = path.dirname($fs.realpathSync(output1));
-                                    return exec(`inkscape --export-pdf ${rp}/${oprefix}.pdf ${rp}/${output1}`);
+                                    console.log("Converting into pdf");
+                                    return exec(`inkscape --export-pdf ${rp}/${oprefix}-orig.pdf ${rp}/${output1}`).then(() => {
+                                        console.log(`Cropping`);
+                                        exec(`pdfcrop ${rp}/${oprefix}-orig.pdf ${rp}/${oprefix}.pdf`);
+                                    });
+
                                 });
                             }
                         }
